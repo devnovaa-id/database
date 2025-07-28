@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8'/>
+<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+  <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+<head>
+<title>Selamat Ulang Tahun - Script Spesial</title>
+<meta name="description" content="Kejutan Ulang Tahun Istimewa">
+<!-- 
+  Made with love by key
+  
+     Blog: devnova-docs.vercel.app
+     Instagram: @thiskey_hihi
+     Email: devnova.id@proton.me
+     
+  Thanks to all <3
+-->
+</head>
+<style>
+:root {
+--warna-bg: rgba(20, 20, 20, .8); 
+--tombol-teks: #fff;
+--tombol-bingkai: #fff;
+--bingkai: 18px;
+--bingkai-kiri: 1.3px solid var(--tombol-bingkai);
+--bingkai-kanan: 1.3px solid var(--tombol-bingkai);
+--gaya-font: 'Nunito Sans', sans-serif;
+--gaya-font2: 'Caveat', cursive;
+--gaya-font3: 'Dancing Script', cursive;
+--primary-color: #ff6b6b;
+--secondary-color: #4ecdc4;
+--accent-color: #45b7d1;
+}
+
+/* Enhanced animations */
+@keyframes fanim {0% {background-position: 0% 0%;}25% {background-position: 100% 100%;} 50% {background-position: 0% 100%;} 75% {background-position: 50% 50%;} 100% {background-position: 0% 0%;}}
+@keyframes sparkle {0%, 20%, 40%, 60%, 80%, 100% {opacity: 0;} 10%, 30%, 50%, 70%, 90% {opacity: 1;}}
+@keyframes float {0% {transform: translateY(0px) rotate(0deg);} 25% {transform: translateY(-15px) rotate(2deg);} 50% {transform: translateY(-30px) rotate(0deg);} 75% {transform: translateY(-15px) rotate(-2deg);} 100% {transform: translateY(0px) rotate(0deg);}}
+@keyframes pulse {0% {transform: scale(1);} 50% {transform: scale(1.08);} 100% {transform: scale(1);}}
+@keyframes rainbow {0% {filter: hue-rotate(0deg);} 25% {filter: hue-rotate(90deg);} 50% {filter: hue-rotate(180deg);} 75% {filter: hue-rotate(270deg);} 100% {filter: hue-rotate(360deg);}}
+@keyframes glow {0% {box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);} 50% {box-shadow: 0 0 40px rgba(255, 107, 107, 0.8), 0 0 60px rgba(78, 205, 196, 0.6);} 100% {box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);}}
+@keyframes textGlow {0% {text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);} 50% {text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 107, 107, 0.6);} 100% {text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);}}
+@keyframes bounce {0% {transform: translateY(0);} 50% {transform: translateY(-15px);} 100% {transform: translateY(0);}}
+@keyframes wiggle {0% {transform: rotate(0deg);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} 100% {transform: rotate(0deg);}}
+
+body{
+  font-family:var(--gaya-font);
+  padding: 20px 25px;
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  height: 100vh;
+}
+
+/* Background slideshow container */
+.bg-slideshow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.bg-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  filter: brightness(0.7) blur(1px);
+}
+
+.bg-slide.active {
+  opacity: 1;
+}
+
+.bg-slide:nth-child(1) {
+  background-image: linear-gradient(rgba(255, 107, 107, 0.4), rgba(78, 205, 196, 0.4)), 
+                    url('https://devnovaa-id.github.io/database/img1.jpg');
+}
+
+.bg-slide:nth-child(2) {
+  background-image: linear-gradient(rgba(69, 183, 209, 0.4), rgba(150, 206, 180, 0.4)), 
+                    url('https://devnovaa-id.github.io/database/img2.jpg');
+}
+
+.bg-slide:nth-child(3) {
+  background-image: linear-gradient(rgba(254, 202, 87, 0.4), rgba(255, 159, 243, 0.4)), 
+                    url('https://devnovaa-id.github.io/database/img3.jpg');
+}
+
+.bg-slide:nth-child(4) {
+  background-image: linear-gradient(rgba(84, 160, 255, 0.4), rgba(255, 107, 107, 0.4)), 
+                    url('https://devnovaa-id.github.io/database/img1.jpg');
+} 
+a{text-decoration:none;}
+
+/* Enhanced watermark */
+body::before{
+  content:"\00A9  this_key | DevNova-ID";
+  color:white;
+  opacity:.4;
+  font-size:11px;
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  z-index:2;
+  background: rgba(0,0,0,.3);
+  padding: 5px 10px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+#bodyblur{
+  animation: jj 10s infinite;
+  opacity:.6;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.2);
+  transition:all 2s ease;
+} 
+
+#wallpaper{
+  width:100%;height:100%;
+  transform: scale(1);
+  transition:all 2s ease;
+  filter: brightness(0.7) contrast(1.1);
+}
+
+#beneranblur{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.4);
+  transition:all 3s ease;
+}
+
+/* Enhanced keyframes */
+@keyframes jj{0%  {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);}}
+@keyframes rts{from {transform:scale(.1);} to {transform:scale(1);}}
+@keyframes rto{from {transform:scale(1);} to {transform:scale(1.15);}}
+@keyframes aniopa{0% {transform: scale(1);} 50% {transform: scale(.8);} 100% {transform: scale(1);}}
+@keyframes rtf{from {transform: rotate(0deg);} to {transform: rotate(360deg);}} 
+@keyframes rt{from {transform: scale(.9);} to {transform: scale(1);}}
+@keyframes kont{0%  {left:-2px; top:-4px;} 50% {left:2px; top:4px;} 100% {left:-2px; top:-4px;}}
+
+/* Enhanced blockquote */
+blockquote{
+  position:absolute;
+  opacity:0;
+  visibility:hidden;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transform: scale(.1);
+  transition:all .8s ease;
+  margin-left:0;margin-right:0;
+  color:var(--tombol-teks);
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, .6);
+}
+
+blockquote{
+  width:360px;
+  text-align:center;
+  line-height:1.3em;
+  padding:16px;
+}
+
+blockquote p{
+  font-size:14px;
+  font-weight:400;
+  line-height:1.5em;
+  transition:all .6s ease;
+  margin-left:0;margin-right:0;
+}
+
+blockquote p:not(#kalimat, #teksnim){display:none;}
+
+#teksnim, blockquote p span.ft{
+  font-family:var(--gaya-font3);
+  font-size:22px;
+  font-weight:600;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #feca57, #ff9ff3);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 2s linear infinite, textGlow 3s ease-in-out infinite;
+}
+
+#teksnim{
+  font-size:20px;
+  position:absolute;
+  opacity:0;
+  transform:scale(0);
+  transition:all 1s ease;
+  animation: rainbow 2s linear infinite, textGlow 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
+}
+
+/* Enhanced sliding section */
+#pergeseran{
+  margin-top:40px;
+  position:absolute;
+  opacity:0;
+  transform:scale(0);
+  transition:all 1.2s ease;
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:flex-start;
+  justify-content:flex-start;
+  max-width:520px;
+  padding:0 30px; 
+  overflow-y:hidden;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory; 
+  -ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;
+}
+
+#pergeseran p{
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding:16px;
+  display:flex;
+  flex-wrap:nowrap;
+  text-align:center;
+  line-height:1.4em;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0; 
+  width:90%;
+  margin:0 12px 0 0; 
+  scroll-snap-align:center;
+  transition: all 0.3s ease;
+}
+
+#pergeseran p:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+#pergeseran p, #psn{
+  color:white;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, .8);
+  min-height:160px;
+}
+
+#pergeseran > *:last-child{margin-right:0} 
+#pergeseran:after{content:'';display:block;flex-shrink:0; align-self:stretch;padding-left:20px}
+
+#pergeseran p b{display:block;}
+#pergeseran p b span{font-size:14px;font-weight:600;}
+#pergeseran p b span.ft{font-family:var(--gaya-font3);font-size:18px}
+#pergeseran p b img{
+  width:65px;height:65px;margin-bottom:16px;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  animation: float 3s ease-in-out infinite;
+}
+
+#fotolove{
+  border-radius:50%;
+  transition:all .4s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+} 
+#fotolove:hover{transform: scale(.85) rotate(5deg);}
+
+#pesanAkhir{
+  margin-top:30px;
+  font-family:var(--gaya-font3);
+  font-size:24px !important;
+  font-weight:400;
+  text-align:center;
+  position: absolute;
+  opacity:0;
+}
+
+/* Enhanced button - smaller and cleaner */
+#Tombol{
+  position:relative;
+  opacity:0;
+  margin-top:20px !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  list-style:none;
+  transform: scale(.1);
+  transition:all .8s ease;
+}
+
+#Tombol a{
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center; 
+  margin:0;
+  transition:all .3s ease;
+  padding:8px 16px;
+  outline:0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius:20px;
+  line-height:16px;
+  color:white;
+  font-size:12px;
+  font-weight:500;
+  white-space:nowrap;
+  overflow:hidden;
+  z-index:1;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+} 
+
+#Tombol a:hover{
+  transform: scale(.98) translateY(-1px);
+  opacity:.95;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+/* Enhanced content area */
+#Content{
+  animation-name:pulse;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  position:relative;
+  opacity:0;
+  margin-top:50px;
+  width:100%;
+  height:200px;
+  transition:all .8s ease;
+}
+
+#Content > *{
+  display:flex;
+  align-items:center;
+  text-align:center;
+  justify-content:center;
+  margin-top:1px;
+}
+
+.kumpulanstiker > img{
+  display:none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+  box-shadow: 0 8px 32px rgba(255,255,255, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  padding:12px;
+  width:95px;height:95px;
+}
+
+#ftAwal > img{
+  width:140px;height:140px;margin-bottom:60px;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  animation: float 4s ease-in-out infinite;
+}
+
+#fotostiker{
+  opacity:.1;
+  transition:all .8s ease;
+  transform: scale(.1);
+}
+
+#imglewat{
+  margin:35px 0;
+  opacity:0;
+  max-width:540px;
+  height:120px;
+  position:absolute;
+  transition:all 1.2s ease;
+}
+
+/* Enhanced text styles */
+.halo{
+  text-align:center;
+  font-size:18px !important;
+  position:relative;
+  margin-bottom:25px;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, .7);
+} 
+
+.halo.gaya2{
+  font-family:var(--gaya-font3);
+  font-size:28px !important;
+  margin-top:25px !important;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.halo.sty3{
+  position:absolute !important;
+  font-size:15px !important;
+  font-weight:400 !important;
+  margin:35px 25px !important;
+}
+
+#fotolove img{
+  transition:all .6s ease;
+  width:80px;height:80px;
+  padding:0;background:none;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+}
+
+#loveIn img{
+  display:inline-flex;
+  background:none;
+  width:140px;height:140px;
+  transition:all .4s ease;
+  animation: pulse 2s infinite;
+} 
+
+#ket, #ketgeser, .halo{
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, .8);
+  font-size:18px;
+  font-weight:700;
+  color:white;
+}
+
+#ket{
+  margin-top:25px !important;
+  font-size:14px;
+  font-weight:500;
+  opacity:.9;
+  animation: pulse 2s infinite;
+}
+
+#ketgeser{
+  position:absolute;
+  margin-top:35px;
+  font-size:12px;
+  font-weight:400;
+  transform:scale(0);
+  opacity:0;
+  transition:all .8s ease;
+}
+
+/* Enhanced love button animation */
+@keyframes leaves {0% {transform: scale(1.0);} 100% {transform: scale(.9);}}
+#loveIn{
+  animation: float 3s ease-in-out infinite;
+} 
+
+.lovein{
+  background: linear-gradient(135deg, #ff6b6b, #e73c7e, #ff9ff3);
+  border-radius:50%;
+  width:50px;height:50px;
+  padding:12px;
+  font-size:28px;
+  display:flex;
+  align-items:center;
+  text-align:center;
+  justify-content:center;
+  transition:all .4s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.lovein::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #feca57);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lovein:hover::before {
+  opacity: 0.7;
+  animation: rainbow 1s linear infinite;
+}
+
+.lovein:hover{
+  cursor:pointer;
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
+}
+
+.lovein svg{
+  stroke:#ffffff;
+  stroke-width:2;
+  fill:#ffffff;
+  width:30px;height:30px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Enhanced SweetAlert styles */
+.swal2-modal > *{
+  font-family:var(--gaya-font);
+  font-size:17px;
+  color:white;
+}
+
+.swal2-title{
+  line-height:1.4em;
+  font-size:19px;
+  text-align:center;
+  padding:20px 35px 0 35px;
+  font-weight: 600;
+}
+
+.swal2-timer-progress-bar-container > *{
+  opacity:.8;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  margin:0 3px;
+}
+
+.swal2-modal{
+  background: linear-gradient(135deg, rgba(0,0,0, .8), rgba(0,0,0, .6));
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 40px rgba(0,0,0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  max-width:320px;
+  top:-70px;
+}
+
+.swal2-image{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 8px 30px rgba(255,255,255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  padding:15px;
+}
+
+.swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel{
+  position: relative;
+  background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+  color: #fff;
+  font-size:15px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius:25px;
+  padding: 10px 20px;
+  z-index: 1;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.swal2-styled.swal2-cancel{
+  background: linear-gradient(135deg, #ff6b6b, #e73c7e);
+}
+
+.swal2-styled.swal2-confirm:hover, .swal2-styled.swal2-cancel:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Enhanced falling hearts */
+.fa-heart {
+  opacity:.4;
+  color: #ff6b6b;
+  font-size: 22px;
+  position: absolute;
+  animation: heartMove linear 1;
+  top: -10vh;
+  z-index: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes heartMove {
+  0%{
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  } 
+  10%{
+    opacity: 0.6;
+  }
+  90%{
+    opacity: 0.6;
+  }
+  100%{
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Particle effects */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  animation: sparkle 2s linear infinite;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #feca57);
+  animation: confettiFall 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.star {
+  position: absolute;
+  color: #ffd700;
+  font-size: 20px;
+  animation: starTwinkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Enhanced visibility classes */
+.sembunyi, #pesanditolak > *, #kado2, #kado3, .kumpulanwp > *{
+  display:none !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  blockquote { width: 350px; }
+  #pergeseran { max-width: 450px; }
+  .swal2-modal { max-width: 280px; }
+  #Tombol a { padding: 10px 15px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  blockquote { width: 320px; padding: 15px; }
+  #pergeseran { max-width: 380px; padding: 0 20px; }
+  body { padding: 15px 20px; }
+}
+</style>
+<body>
+   <!-- Background Slideshow -->
+   <div class="bg-slideshow">
+     <div class="bg-slide active"></div>
+     <div class="bg-slide"></div>
+     <div class="bg-slide"></div>
+     <div class="bg-slide"></div>
+   </div>
+	
+   <!-- Enhanced Audio -->
+   <audio src="https://devnovaa-id.github.io/database/rizkyfebian-selamat-ulang-tahun-lyrics-128-ytshorts.savetube.me.mp3" id="linkmp3" class="sembunyi" loop></audio>
+   
+   <div id="bodyblur">
+     <!-- Enhanced Wallpaper -->
+     <img src="https://feeldreams.github.io/pics/awan3.jpg" id="wallpaper"/>
+   </div>
+   
+   <div id='Content'>
+
+     <div id="ftAwal">
+       <!-- Enhanced Opening Sticker -->
+       <img src="https://feeldreams.github.io/pandaputih.gif" id="ftoAwal"/>
+     </div>
+
+     <div id="loveIn">
+       <!-- Enhanced Love Button -->
+       <a href="javascript:void(0)" class='lovein'>
+         <svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+           <g transform='translate(2.550170, 3.550158)'>
+             <path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path>
+             <path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path>
+           </g>
+         </svg>
+       </a>
+     </div>
+     <p id="ket">✨ Sentuh LOVE untuk Kejutan! ✨</p>
+
+     <div class="kumpulanstiker">
+         <!-- Enhanced Stickers -->
+         <img src="https://feeldreams.github.io/cilukba.gif" id="fotostiker"/>
+         <img src="https://feeldreams.github.io/pandaputih.gif" id="fotostikerPopup"/>
+         <img src="https://feeldreams.github.io/weee.gif" id="fotostikerPopupCon"/>
+         <img src="https://feeldreams.github.io/ngumpet.gif" id="fotostikerPopupCan"/>
+     </div>
+     
+     <div><div id='pergeseran'>
+     	
+<!-- Enhanced Messages -->
+<p><b><img src="https://feeldreams.github.io/pusn.gif"/><br>
+	<span>Hai Kamu Cantik! 🤭✨</span>
+</b></p>
+
+<p><b><img src="https://feeldreams.github.io/pusn.gif"/><br>
+	<span>Ada Kejutan Spesial<br>Buat Kamu Nih! 🎁</span>
+</b></p>
+
+<p><b><img src="https://feeldreams.github.io/cilukba.gif"/><br>
+	<span>Ciyee... Yang Ultah<br>Makin Cantik Aja! 😍</span>
+</b></p>
+
+<p><b><img src="https://feeldreams.github.io/g5.gif"/><br>
+	<span class="ft">🎉 HAPPY BIRTHDAY! 🎂</span>
+</b></p>
+
+<p><b><img src="https://feeldreams.github.io/mndkat.gif"/><br>
+	<span>Semoga Tahun Ini Penuh<br>Kebahagiaan & Berkah! 🌟</span>
+</b></p>
+
+<p><b><img src="https://feeldreams.github.io/pusn.gif"/><br>
+	<span>Jangan Lupa Bahagia<br>Terus Ya! 😊💖</span>
+</b></p>
+
+     </div></div>
+     
+     <!-- Enhanced Final Message -->
+     <div><blockquote id='bq'>
+       <p id="teksnim">🎊 HAPPY LEVEL UP DAY! 🎊</p>
+       <p id="kalimat"><span id="klganti"></span>Di hari spesial ini, semoga semua mimpi dan harapan kamu terwujud. Kamu adalah pribadi yang luar biasa dan layak mendapatkan semua kebahagiaan di dunia! 🌟<br><br>Terus jadi orang yang menginspirasi dan menyebar kebaikan kemana-mana ya! ✨<br><br><span class="ft">May All Your Dreams Come True! 🌈💫</span></p>
+     </blockquote></div>
+     
+     <div id="Tombol">
+       <a onClick="multifungsi()">
+         <b id="tmbl">✨ Geser untuk Lanjut ➡️</b>
+       </a>
+     </div>
+     
+   </div>
+
+<script>
+// Enhanced JavaScript with more features
+const body = document.querySelector("body"); 
+const iniwp = [];
+let iden = 1; 
+const swals = Swal.mixin({
+  timer: 99999, 
+  allowOutsideClick: false, 
+  showConfirmButton: true, 
+  timerProgressBar: false, 
+  imageHeight: 100,
+}); 
+
+audio = new Audio('' + linkmp3.src); 
+let ftganti=0, fungsi=0, fungsiAwal=0, deffotostiker=fotostiker.src;
+
+// Enhanced falling hearts function
+function berjatuhan() {
+  const heart = document.createElement("div"); 
+  heart.className = "fas fa-heart"; 
+  heart.style.left = (Math.random() * 90)+"vw"; 
+  heart.style.animationDuration = (Math.random()*3)+2+"s"; 
+  heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+  heart.style.color = `hsl(${Math.random() * 60 + 320}, 70%, 60%)`;
+  body.appendChild(heart);
+} 
+
+// Enhanced sparkle effect
+function createSparkle(x, y) {
+  const sparkle = document.createElement("div");
+  sparkle.className = "sparkle";
+  sparkle.style.left = x + "px";
+  sparkle.style.top = y + "px";
+  sparkle.style.animationDelay = Math.random() * 1 + "s";
+  body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 2000);
+}
+
+// Enhanced confetti effect
+function createConfetti() {
+  const confetti = document.createElement("div");
+  confetti.className = "confetti";
+  confetti.style.left = Math.random() * window.innerWidth + "px";
+  confetti.style.top = "-10px";
+  confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+  confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+  body.appendChild(confetti);
+  setTimeout(() => confetti.remove(), 5000);
+}
+
+// Create twinkling stars
+function createStar() {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.innerHTML = "✨";
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.animationDelay = Math.random() * 2 + "s";
+  body.appendChild(star);
+  setTimeout(() => star.remove(), 4000);
+}
+
+// Create sparkles on mouse move
+document.addEventListener('mousemove', (e) => {
+  if (Math.random() < 0.1) {
+    createSparkle(e.clientX, e.clientY);
+  }
+});
+
+// Clean up hearts
+setInterval(function() {
+  var heartArr = document.querySelectorAll(".fa-heart"); 
+  if (heartArr.length > 150) {
+    heartArr[0].remove();
+  }
+}, 100);
+
+Content.style = "opacity:1;margin-top:12vh";
+
+// Background slideshow functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.bg-slide');
+const totalSlides = slides.length;
+
+function nextSlide() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % totalSlides;
+  slides[currentSlide].classList.add('active');
+}
+
+// Change background every 6 seconds
+setInterval(nextSlide, 6000); 
+
+const box = document.getElementById('pergeseran');
+const totalSlide = box.children.length;
+console.log('Total Slide: ', totalSlide);
+totalPesan = totalSlide;
+
+// Enhanced date display
+var date = new Date();
+var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+var hours = date.getHours();
+var minutes = date.getMinutes();
+
+if (hours < 10) {hours = "0" + hours;}
+if (minutes < 10) {minutes = "0" + minutes;}
+
+var day = days[date.getDay()];
+var dateNum = date.getDate();
+var month = months[date.getMonth()];
+var year = date.getFullYear();
+
+console.log(hours + "." + minutes + " WIB - " + day + ", " + dateNum + " " + month + " " + year);
+
+// Enhanced watermark removed
+
+var sudahklik = false;
+sudahklik = true;
+
+loveIn.innerHTML = "<label class='lovein'><svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.550170, 3.550158)'><path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path><path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path></g></svg></label>";
+
+document.getElementById("loveIn").onclick = function() {
+  if(sudahklik == true && fungsiAwal==0){
+    // Trigger confetti burst
+    for(let i = 0; i < 15; i++) {
+      setTimeout(() => createConfetti(), i * 100);
+    }
+    
+    // Create sparkle burst around love button
+    for(let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        createSparkle(
+          loveIn.offsetLeft + Math.random() * 100 - 50,
+          loveIn.offsetTop + Math.random() * 100 - 50
+        );
+      }, i * 50);
+    }
+    
+    loveIn.style="transition:all .6s ease;opacity:0;transform:scale(0.5) rotate(180deg)";
+    ftAwal.style="transition:all .6s ease;opacity:0;transform:scale(0.5) rotate(-180deg)";
+    ket.style="transition:all .6s ease;opacity:0;transform:translateY(-20px)";
+    fungsiAwal=1;
+    setTimeout(initengahan,400);
+  }
+}
+
+function initengahan(){
+  ftAwal.style="display:none";
+  loveIn.style="display:none";
+  ket.style="display:none";
+  Content.style = "opacity:1;margin-top:8vh";
+  setTimeout(inipesan,300);
+  audio.play();
+  
+  // Start sparkle effects
+  setInterval(() => {
+    for(let i = 0; i < 3; i++) {
+      createSparkle(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
+    }
+  }, 500);
+}
+
+let aktigeser=0, thisgeser=1;
+document.getElementById("bodyblur").onclick = function() {multifungsi()}
+
+function multifungsi(){
+  if(aktigeser==1){
+    if(thisgeser==totalPesan){aksiakhir()}
+    document.getElementById('pergeseran').scrollLeft += 320;
+    hsementara();
+  }
+  if(thisgeser==100){Tombol.style="";setTimeout(aksibalas,200);}
+}
+
+async function inipesan(){
+  nama = "Kamu"; 
+  window.nama = nama;
+  mulainama();
+}  
+
+async function mulainama() {
+  setTimeout(pgmuncul,300);
+}
+
+function hsementara(){
+  Tombol.style="opacity:0;transform:scale(0.8)";
+  thisgeser+=1;
+  aktigeser=0;
+  setTimeout(munculkembali,600)
+}
+
+function munculkembali(){
+  if(thisgeser<=totalPesan){
+    Tombol.style="opacity:1;transform: scale(1)";
+    aktigeser=1;
+  }
+  if(thisgeser==50){
+    tmbl.innerHTML = "💝 Lihat Pesan Khusus";
+    Tombol.style="opacity:1;transform: scale(1)";
+    thisgeser=100;
+  }
+}
+
+function aksiakhir(){
+  pergeseran.style="position:relative;opacity:0.8;transform:scale(0.95)";
+  Tombol.style="opacity:0;transform:scale(0.8)";
+  setTimeout(aksibalas,600);
+}
+
+function kalimatakhir(){
+  new TypeIt("#kalimat", {
+    strings: ["" + katakata], 
+    startDelay: 100, 
+    speed: 45, 
+    cursor: true,
+    afterComplete: function(){
+      kalimat.innerHTML = katakata;
+      setTimeout(munculteksnim,400);
+    },
+  }).go();
+}
+
+function munculteksnim(){
+  klganti.style="display:none";
+  teksnim.style="position:relative;opacity:1;transform:scale(1);";
+  setTimeout(jjteksnim,700);
+  setInterval(berjatuhan,200);
+}
+
+function jjteksnim(){
+  teksnim.style.animation="pulse 1.5s infinite alternate";
+}
+
+function pgmuncul(){
+  pergeseran.style="position:relative;opacity:1;transform:scale(1);";
+  setTimeout(munculkembali,600)
+}
+
+function bqmuncul(){
+  if(poinjwb==1){
+    katakata = kalimat.innerHTML;
+    kalimat.innerHTML = "";
+  }else{
+    klganti.innerHTML="";
+    katakata = kalimat.innerHTML;
+    kalimat.innerHTML = "";
+  }
+  Content.style = "opacity:1;margin-top:6vh";
+  fotostiker.style="display:none";
+  pergeseran.style="display:none";
+  Tombol.style="display:none";
+  bq.style = "position:relative;opacity:1;visibility:visible;margin-top:3vh;transform: scale(1);";
+  setTimeout(kalimatakhir,300);
+}
+
+let tompositif = "Mau Banget! 🎁";
+let tomnegatif = "Hmm... Nanti Deh 😅";
+
+async function aksibalas(){
+  var { isConfirmed: prtanya } = await swals.fire({
+    title: '🎁 ' + nama + ' Mau Hadiah Spesial? 🎁',
+    html: 'Ada kejutan istimewa nih buat kamu! 🌟<br>Mau lihat gak? 😊',
+    imageUrl: '' + fotostikerPopup.src, 
+    showCancelButton: true, 
+    confirmButtonText: '' + tompositif, 
+    cancelButtonText: '' + tomnegatif,
+  });
+  
+  if(prtanya){
+    await swals.fire({
+      title: '🎉 Surprise! 🎉', 
+      html: 'Hadiahnya adalah... DOA TERBAIK! 🤲<br>Semoga selalu sehat, bahagia, dan sukses ya! 💖<br><br>Plus... kamu dapat banyak hati! 💕', 
+      imageUrl: '' + fotostikerPopupCon.src,
+    });
+    poinjwb=1;
+  } else {
+    await swals.fire({
+      title: '🥺 Yaahh...', 
+      html: 'Gapapa kok! Nanti kalau mau, bilang-bilang ya! 😊<br>Yang penting kamu selalu bahagia! 💖', 
+      imageUrl: '' + fotostikerPopupCan.src,
+    });
+    poinjwb=2;
+  }
+  bqmuncul();
+}
+
+// Add some extra visual effects
+setTimeout(() => {
+  setInterval(berjatuhan, 300);
+  setInterval(createConfetti, 2000); // Konfetti setiap 2 detik
+  setInterval(createStar, 1500); // Bintang setiap 1.5 detik
+}, 2000);
+
+// Enhanced background music control
+audio.volume = 0.6;
+audio.addEventListener('ended', function() {
+  this.currentTime = 0;
+  this.play();
+}, false);
+
+// Add floating elements cleanup
+setInterval(function() {
+  const floatingElements = document.querySelectorAll(".confetti, .star, .sparkle");
+  if (floatingElements.length > 200) {
+    floatingElements[0].remove();
+  }
+}, 500);
+</script>
+</body>
+</html>
