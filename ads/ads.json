@@ -1,0 +1,25 @@
+{
+  "ads": [
+    {
+      "id": 1,
+      "type": "image",
+      "url": "https://raw.githubusercontent.com/username/repository-name/main/database/ads/asset/imgads1.jpg",
+      "duration": 30,
+      "skipAfter": 10
+    },
+    {
+      "id": 2,
+      "type": "image",
+      "url": "https://raw.githubusercontent.com/username/repository-name/main/database/ads/asset/imgads2.jpg",
+      "duration": 30,
+      "skipAfter": 10
+    },
+    {
+      "id": 3,
+      "type": "image",
+      "url": "https://raw.githubusercontent.com/username/repository-name/main/database/ads/asset/imgads3.jpg",
+      "duration": 30,
+      "skipAfter": 10
+    }
+  ]
+}
